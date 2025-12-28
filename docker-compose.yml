@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7.2.2-alpine
+    restart: on-failure
+
+  mongodb:
+    image: mongo:7.0.2
+    restart: on-failure
+    healthcheck:
+      test: echo 'db.state().ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    build: ./frontend
+    image: data-agent-frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+      - mongodb
+      - backend
+
+  backend:
+    build: ./
+    image: data-agent-backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+      - mongodb
+    volumes:
+      - "backend-data:/app/backend/data"
+    environment:
+      - OPENAI_API_KEY=
+      - REDIS_SERVER=redis
+      - MONGO_SERVER=mongodb
+      - CODE_EXECUTION_MODE=local
+
+volumes:
+  backend-data:
+    driver: local
+

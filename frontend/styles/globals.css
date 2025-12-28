@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  
+@font-face {  
+  font-family: 'Montserrat';  
+  font-style: normal;  
+  font-weight: normal;  
+  src: url('../public/fonts/Montserrat-VariableFont_wght.ttf');  
+}
+
+:root {
+  --primary-color: #4F46E5;
+  --secondary-color: #10B981;
+  --background-light: #F8FAFC;
+  --background-dark: #1E293B;
+  --sidebar-bg: #0F172A;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --accent-color: #6366F1;
+}
+
+html {
+  font-size: 15px;
+  background: var(--background-light);
+}
+
+.cm-editor {
+  font-size: 12px;
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94A3B8;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: #F1F5F9;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+@media (max-width: 720px) {
+  pre {
+    width: calc(100vw - 110px);
+  }
+}
+
+pre:has(div.codeblock) {
+  padding: 0;
+}
+
+body {  
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-primary);
+  background: var(--background-light);
+}
+
+/* Custom gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
